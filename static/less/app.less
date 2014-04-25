@@ -1,10 +1,20 @@
 /******************************** Imports ******************************/
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300);
 @import url(http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise);
 /******************************** Mixins *******************************/
 .layout-element(@top: 0px, @left: 0px, @right: 0px, @bottom: 0px) {
     position: absolute;
     top: @top; left: @left; right: @right; bottom: @bottom;
+}
+
+.element-mixin(@background-color) {
+    background-color: @background-color;
+    border: 3px solid @background-color;
+    &:hover {
+        background-color: #fff;
+        border: 3px solid @background-color;
+        color: #000;
+    }
 }
 
 /******************************** Layout *******************************/
@@ -23,13 +33,11 @@ header#header {
 }
 
 section#content {
-    .layout-element(50px);
+    .layout-element(50px, 200px);
 }
 
 aside#side-bar {
-    .layout-element();
-    width: 250px;
-    background-color: #e3e3e3;
+    .layout-element(50px);
 }
 
 /******************************** Header ******************************/
@@ -87,18 +95,78 @@ aside#side-bar {
 
 /******************************** Side bar******************************/
 
+.closed {
+    width: 40px;
+}
+.open {
+    width: 200px;
+}
 #side-bar {
-    div.logo {
-        height: 50px;
-        background-color: black;
-        span {
-            color: white;
-            margin: 10px;
-            float: left;
-            font-size: 20px;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        float: right;
+        margin-top: 5px;
+        li {
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 400;
+            height: 30px;
+            padding: 7px 9px 0 35px;
+            position: relative;
+            cursor: pointer;
+            color: #c1c1c1;
+            -webkit-transition: color .2s cubic-bezier(0.23,1,0.32,1) 0;
+            -moz-transition: color .2s cubic-bezier(0.23,1,0.32,1) 0;
+            -o-transition: color .2s cubic-bezier(0.23,1,0.32,1) 0;
+            transition: color .2s cubic-bezier(0.23,1,0.32,1) 0;
+            width: 200px;
+            &:hover {
+                color: #fff;
+            }
+            span {
+                margin: 5px;
+            }
+            i.float-right {
+                float: right;
+                margin-right: 3px;
+            }
+        }
+        .popover {
+            margin-left: 0px;
+            margin-top: 1px; 
+            width: 210px;
+            background: #000;
+            color: rgb(145, 145, 145);
+            .arrow {
+                &:after {
+                    border-right-color: #000;
+                }
+            }
         }
     }
-    
+    .toggle {
+        background-color: #3b3b3b;
+        height: 20px;
+        border-top: 1px solid #4f4f4f;
+        width: 100%;
+        cursor: pointer; 
+        i {
+            font-size: 20px;
+            margin-right: 5px;
+            float: right;
+            color: #fff;
+        }
+    }
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+    background-color: #2f2f2f;
+    color: #dcdbdb;
 }
 
 /******************************** Content ******************************/
@@ -156,3 +224,69 @@ aside#side-bar {
         text-decoration: underline;
     }
 }
+
+/******************************** Add Element Modal ******************************/
+
+#add-modal {
+    font-family: 'Roboto';
+    .modal-header {
+        text-align: center;
+    }
+    .modal-body {
+        padding: 0px;
+        height: 200px;
+        span.type {
+            display: inline-block;
+            margin: 20px 14px; 
+            font-size: 14px;
+            font-weight: bold;
+        }
+        ul {
+            width: 530px;
+            height: 60px;
+            padding: 5px;
+            float: right;
+            text-align: center;
+            list-style: none;
+            li {
+                width: 120px;
+                height: 50px;
+                padding: 13px;
+                display: inline-block;
+                color: #ffffff;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: all 0.3s;
+                &:hover {
+                    -webkit-transform: scale (1.2);
+                    transform: scale (1.2); 
+                }
+            }
+            li.task-element {
+                .element-mixin(#34495e);
+            }
+            li.note-element {
+                .element-mixin(#0d7eff);
+            }
+            li.event-element {
+                .element-mixin(#779ce8);
+            }
+            li.empty-element{
+                .element-mixin(#e74c3c);
+            }
+            li.active {
+                
+            }
+        }
+        label {
+           margin: 7px 15px; 
+        }
+        input.element-name-input {
+            width: 490px;
+            float: right;
+            margin-right: 20px;
+        }
+    }
+}
+
+

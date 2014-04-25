@@ -24,9 +24,22 @@
                 </ul>                        
             </div>
             <div class='header-nav-btns'>
-                <button class='add'>Add</button>
+                <button class='add' ng-click='openAddModal()'>Add</button>
             </div>
         </header>
+        <aside id='side-bar' ng-controller='SidebarController' ng-class='{open: isOpen, closed: !isOpen}'>
+            <div class='toggle' ng-click="isOpen = !isOpen">
+                <i class='fa ' ng-class='{"fa-angle-double-right": !isOpen, "fa-angle-double-left": isOpen}' ></i>
+            </div>
+            <ul>
+                <li popover="Drag and Drop to add a new Task" popover-placement='right' popover-trigger="mouseenter" > <i class='fa fa-square'ng-class='{"float-right": !isOpen}'></i> <span ng-show='isOpen' >Add Task</span></li>
+                <li popover="Drag and Drop to add a new Note" popover-placement='right' popover-trigger="mouseenter"> <i class='fa fa-circle' ng-class='{"float-right": !isOpen}'></i> <span ng-show='isOpen'>Add Note</span></li>
+                <li popover="Drag and Drop to add a new Event" popover-placement='right' popover-trigger="mouseenter"> <i class='fa fa-circle-o'   ng-class='{"float-right": !isOpen}'></i> <span ng-show='isOpen'>Add Event</span></li>
+                <li popover="Drag and Drop to add a new Page" popover-placement='right' popover-trigger="mouseenter" > <i class='fa fa-file-o'  ng-class='{"float-right": !isOpen}'></i> <span ng-show='isOpen'>Add Empty Page</span></li>
+                <!--<li> <i class='fa fa-plus'></i> Add Note</li>-->
+                <!--<li> <i class='fa fa-plus'></i> Add Event</li>-->
+            </ul>
+        </aside>
         <section id='content'>
                 <div class='page-container' ng-view>
             </div>
@@ -35,5 +48,5 @@
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{% static  'dist/js/app.js' %}"></script>
-    <script type="text/javascript" src="{% static  'bower_components/angular-bootstrap/ui-bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static  'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js' %}"></script>
 </html>
