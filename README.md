@@ -7,16 +7,15 @@ Inspiration and idea: [http://www.bulletjournal.com/][1]
   [1]: http://www.bulletjournal.com/
   
   ----------
-  **Stack**
-
+ **Stack**
  - *Backend:* Django, Django rest framework
  - *Frontend:* AngularJS(MVC, SPA)
  - *Design:* Bootstrap, LESS
 
-  ----------
+ ----------
 **App homepage**
     *Soon..*
-  ----------  
+ ----------  
   **Todos**
   
   
