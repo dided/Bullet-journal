@@ -9,9 +9,10 @@ Inspiration and idea: [http://www.bulletjournal.com/][1]
   ----------
   **Stack**
 
-  *Backend:* Django, Django rest framework
-  *Frontend:* AngularJS(MVC, SPA)
-  *Design:* Bootstrap, LESS
+ - *Backend:* Django, Django rest framework
+ - *Frontend:* AngularJS(MVC, SPA)
+ - *Design:* Bootstrap, LESS
+
   ----------
 **App homepage**
     *Soon..*
@@ -24,3 +25,8 @@ Inspiration and idea: [http://www.bulletjournal.com/][1]
  2. Frontend testing
  3. Add Bullets, Pages, and Collections
  4. more flexible way to navigate between pages
+
+ 
+
+
+
