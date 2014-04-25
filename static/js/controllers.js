@@ -2,8 +2,13 @@
 
 app = angular.module('jApp.controllers', []);
 
-app.controller('HeaderController', function($scope) {
-    $scope.message ='hello';
+app.controller('HeaderController', function($scope, $modal) {
+    $scope.openAddModal = function() {
+        $modal.open({
+            templateUrl: '/static/partials/_add_elements.html',
+            controller: AddElementsController        
+        });
+    }
 });
 
 app.controller('IndexController', function($scope, PagesService) {
@@ -21,6 +26,7 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
 
     var pageNumber = parseInt($routeParams.page_number);
 
+    //Work around, so that ng-repeat doesn't add index page twice
     if (pageNumber === 1) {
         $location.path('/');
         return;
@@ -62,4 +68,19 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
     };
 
 });
+
+var AddElementsController = function ($scope, $modal, $routeParams, $location, PagesService, BulletsService) {
+    var currentPage = $routeParams.page_number;
+
+    $scope.addElement = function (type) {
+
+    };
+}
+
+
+app.controller('SidebarController', function($scope) {
+    $scope.isOpen = false;
+
+});
+
 
