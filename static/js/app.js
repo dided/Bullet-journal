@@ -9,9 +9,12 @@ app = angular.module('jApp', [
   'ui.bootstrap',
 ]);
 
-app.config(function($interpolateProvider) {
+app.config(function($interpolateProvider, $httpProvider) {
     $interpolateProvider.startSymbol('{[{');    
     $interpolateProvider.endSymbol('}]}');    
+
+$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 });
 
 app.config(function($routeProvider, $locationProvider) {

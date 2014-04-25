@@ -25,7 +25,15 @@ appFac.factory('PagesService', function($http) {
             return count;
         }
     } 
-    
+});
+
+appFac.factory('BulletsService', function($http) {
+    return {
+        updateBullet: function(bulletId, data) {
+            var bullet = $http.put('/api/bullets/' + bulletId, data);
+            return bullet;
+        }
+    }
 });
 
 

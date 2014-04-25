@@ -28,8 +28,8 @@ class BulletSerializer(serializers.ModelSerializer):
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ('id', 'user', 'title', 'page_number', 'total_page_count')
-        read_only_fields = ('page_number', 'total_page_count', 'user')
+        fields = ('id', 'user', 'title', 'page_number',)
+        read_only_fields = ('page_number', 'user',)
 
 
 class CollectionSerializer(serializers.ModelSerializer):
