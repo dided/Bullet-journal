@@ -1,0 +1,158 @@
+/******************************** Imports ******************************/
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300);
+@import url(http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise);
+/******************************** Mixins *******************************/
+.layout-element(@top: 0px, @left: 0px, @right: 0px, @bottom: 0px) {
+    position: absolute;
+    top: @top; left: @left; right: @right; bottom: @bottom;
+}
+
+/******************************** Layout *******************************/
+
+header#header {
+    .layout-element();
+    height: 50px;
+    border-top: 1px solid #484848;
+    border-bottom: 2px solid #000;
+    background-color: #999;
+    background: -webkit-gradient(linear,left top,left bottom,from(#343434),to(#1d1d1d));
+    background: -moz-linear-gradient(top,#343434,#1d1d1d);
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.6);
+    box-shadow: 0 0 3px rgba(0,0,0,0.6);
+}
+
+section#content {
+    .layout-element(50px);
+}
+
+aside#side-bar {
+    .layout-element();
+    width: 250px;
+    background-color: #e3e3e3;
+}
+
+/******************************** Header ******************************/
+
+#header {
+    ul.header-nav {
+        list-style: none;
+        li {
+            color: #FFFFFF;
+            float: right;
+            display: inline-block;
+            margin: 15px;
+            a {
+                color: #FFFFFF;
+            }
+        }  
+    }
+    div.account {
+        cursor: pointer;
+        color: white;
+        float: left;
+        margin: 15px;
+        a {
+            color: #FFFFFF;
+            &:active, &:hover {
+                text-decoration: none;
+            }
+        }
+        ul.dropdown-menu {
+            li {
+                &:hover {
+                    background-color: blue;
+                }
+            }
+            a {
+                color: black;
+            }
+        }
+    }
+    .header-nav-btns {
+        float: right;
+        button.add {
+            width: 110px;
+            height: 25px;
+            margin: 14px 30px;
+            border: none;
+            background: white;
+            border-radius: 4px;
+            &:hover {
+                background: darken(#fff, 10%);
+            }
+        }
+    }
+}
+
+/******************************** Side bar******************************/
+
+#side-bar {
+    div.logo {
+        height: 50px;
+        background-color: black;
+        span {
+            color: white;
+            margin: 10px;
+            float: left;
+            font-size: 20px;
+        }
+    }
+    
+}
+
+/******************************** Content ******************************/
+
+#content {
+    background: linear-gradient( to top, rgba(243,241,229,1) 0%, rgba(243,241,229,0) 100%); 
+    margin: 0 auto;
+    .page-container {
+        text-align: center;
+        height: 100%;
+    }
+    .page {
+        font-family: 'Waiting for the Sunrise', 'serif';
+        position: relative;
+        font-size: 25px;
+        background: url('/static/imgs/grid.gif');
+        background-color: #fff;
+        padding: 50px;
+        height: 100%;
+        width: 50%;
+        display: inline-block; 
+        text-align: left;
+        box-shadow: 0px 5px 10px #999;
+        border-radius: 2em;
+        border-radius: 2em; 
+        border-right: 1px solid rgb(228, 228, 228);
+        a {
+            color: #000;
+        }
+        .bullet-wrapper {
+            cursor: pointer;
+        }
+        .done {
+            text-decoration: line-through;
+            opacity: .5;
+        }
+        .page-number {
+            float: right;
+        }
+        .page-control {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            text-align: center;
+            i {
+                cursor: pointer;
+            }
+        }
+        i {
+            font-size: 20px;
+        }
+    }
+    .title {
+        text-decoration: underline;
+    }
+}

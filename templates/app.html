@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html ng-app='jApp'>
+    <head>
+        <title>Journal</title>
+        <link rel="stylesheet" href="{% static 'bower_components/fontawesome/css/font-awesome.min.css' %}" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'dist/css/app.css' %}" type="text/css" media="screen" title="no title" charset="utf-8">
+    </head>
+
+    <body>
+        <header id='header' ng-controller='HeaderController' >
+            <div class='account' class='dropdown'>
+                <a class='dropdown-toggle'>
+                    <i class='fa fa-user'></i> 
+                </a>
+                <ul class='dropdown-menu'>
+                    <li>
+                        <a> Settings</a>
+                    </li>
+                    <li>
+                        <a href='{% url "logout" %}'> Logout </a>
+                    </li>
+                        
+                </ul>                        
+            </div>
+            <div class='header-nav-btns'>
+                <button class='add'>Add</button>
+            </div>
+        </header>
+        <section id='content'>
+                <div class='page-container' ng-view>
+            </div>
+        </section>
+    </body>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{% static  'dist/js/app.js' %}"></script>
+    <script type="text/javascript" src="{% static  'bower_components/angular-bootstrap/ui-bootstrap.min.js' %}"></script>
+</html>
