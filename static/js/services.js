@@ -22,6 +22,15 @@ appServices.factory('PagesService', function($http) {
         getTotalPageCount: function() {
             var count = $http.get('/api/count')
             return count;
+        },
+        createPage: function(page) {
+            var page = $http.post('/api/pages', page);
+            return page;
+        },
+        updatePage: function(page) {
+            console.log(page);
+            var page = $http.put('/api/pages/' + page.id, page);
+            return page;
         }
     } 
 });
@@ -32,8 +41,8 @@ appServices.factory('BulletsService', function($http) {
             var bullet = $http.post('/api/bullets', bulletObj); 
             return bullet;
         },
-        updateBullet: function(bulletId, data) {
-            var bullet = $http.put('/api/bullets/' + bulletId, data);
+        updateBullet: function(bullet) {
+            var bullet = $http.put('/api/bullets/' + bullet.id, bullet);
             return bullet;
         },
         removeBullet: function(bulletId) {

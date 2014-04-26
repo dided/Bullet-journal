@@ -64,11 +64,12 @@ class PageViewSet(viewsets.ModelViewSet):
         return queryset
 
     def pre_save(self, obj):
-        if Page.objects.filter(user=self.request.user).order_by('-page_number').exists():
-            last_obj = Page.objects.filter(user=self.request.user).order_by('-page_number')[0]
-            obj.page_number = last_obj.page_number + 1 
-        else:
-            obj.page_number = 1
+        if self.request.method == 'POST':
+            if Page.objects.filter(user=self.request.user).order_by('-page_number').exists():
+                last_obj = Page.objects.filter(user=self.request.user).order_by('-page_number')[0]
+                obj.page_number = last_obj.page_number + 1 
+            else:
+                obj.page_number = 1
         obj.user = self.request.user
 
 

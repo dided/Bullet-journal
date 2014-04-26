@@ -17,9 +17,8 @@ app.controller('IndexController', function($scope, PagesService) {
     });
 });
 
-app.controller('SidebarController', function($scope, ElementsService) {
+app.controller('SidebarController', function($scope, ElementsService, PagesService, $location) {
     $scope.isOpen = false;
-    $scope.editStart = false;
 
     //Prepare and emit addElement event, 
     //for the page controller, to handle
@@ -27,11 +26,17 @@ app.controller('SidebarController', function($scope, ElementsService) {
     $scope.addElement = function (elementType) {
         ElementsService.prepAddEvent(true, elementType);
     };
+
+    $scope.addPage = function () {
+        placeholderPage = {title: 'New page'};
+        PagesService.createPage(placeholderPage).success(function(page){
+            $location.path('page=' + page.page_number);
+        });
+
+    };
 });
 
 app.controller('PageController', function($rootScope, $scope, $routeParams, $location, PagesService, BulletsService, ElementsService) {
-
-console.log("here");
     // Get total pages count for the navigation, 
     // pretty sure there is a better way 
     PagesService.getTotalPageCount().success(function(count) { 
@@ -78,7 +83,7 @@ console.log("here");
         if (bullet.done) bullet.done = false;
         else bullet.done = true;
 
-        BulletsService.updateBullet(bullet.id, bullet);
+        BulletsService.updateBullet(bullet);
     };
 
     $scope.cancel = function ($event) {
@@ -131,7 +136,6 @@ console.log("here");
         }
         BulletsService.updateBullet(bullet.id, bullet).success(function(bullet) {
             $scope.editedBullet = null;
-        
         });
     };
 
@@ -140,6 +144,29 @@ console.log("here");
         $scope.editedBullet = null;
     };
 
+    $scope.editPage = function (page) {
+        $scope.editedPage = page;
+        $scope.originalPage = angular.extend({}, page);
+    }
+
+    $scope.donePageEditing= function (page) {
+        if (page.title === $scope.originalPage.name) {
+            $scope.editedPage= null;
+            return;
+        }
+        console.log("Pre save page: ", page);
+        PagesService.updatePage(page).success(function(page) {
+            console.log("Post save page: ", page);
+            $scope.editedPage = null;
+        });
+    };
+
+    $scope.cancelPageEditing= function (Page) {
+        $scope.page = $scope.originalPage;
+        $scope.editedPage = null;
+    };
+
+
     // Listening on the addNewElement event, fired when,
     // user clicks on add elements on the sidebar
     $scope.$onRootScope('addNewElement', function() {
@@ -147,7 +174,6 @@ console.log("here");
         $scope.addNewElement = ElementsService.flag;
         $scope.elementType = ElementsService.elementType;
     });
-
 });
 
 var AddElementsController = function ($scope, $modal, $routeParams, $location, PagesService, BulletsService) {

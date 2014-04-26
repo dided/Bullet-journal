@@ -41,7 +41,7 @@
                 <li ng-click='addElement("event")'popover="Add a new Event" popover-placement='right' popover-trigger="mouseenter"> <i class='fa fa-circle-o' ng-class='{"float-right": !isOpen}'>
                     </i> <span ng-show='isOpen'>Add Event</span>
                 </li>
-                <li popover="Add a new Page" popover-placement='right' popover-trigger="mouseenter" > 
+                <li ng-click='addPage()' popover="Add a new Page" popover-placement='right' popover-trigger="mouseenter" > 
                     <i class='fa fa-file-o'  ng-class='{"float-right": !isOpen}'></i> 
                     <span ng-show='isOpen'>Add Empty Page</span>
                 </li>

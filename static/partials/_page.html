@@ -1,12 +1,17 @@
-<div class="page" ng-controller='PageController'>
-    <div class='title'>{[{ page.title }]}</div>
-    <div class="bullet-wrapper" ng-repeat=" bullet in bullets "  ng-class='{editing: editedBullet == bullet}'>
+<div class="page" ng-controller='PageController' >
+    <div class='title' ng-dblclick="editPage(page)" ng-class='{editing: editedPage == page}'>
+        <span>{[{ page.title }]}</span>
+        <form class='page-edit-form' ng-submit='donePageEditing(page)'>
+            <input type="text" class="new-page-input form-control" ng-model='page.title' focus-on='page == editedPage' ui-keydown="{27: 'cancelPageEditing(page)'}" />
+        </form>
+    </div>
+    <div class="bullet-wrapper" ng-repeat=" bullet in bullets" ng-class='{editing: editedBullet == bullet}'>
         <div ng-switch on='bullet.type'>
             <i class='fa ' ng-class='{"fa-check-square": bullet.done, "fa-square": !bullet.done}' ng-switch-when='task' ng-click='toggleDone(bullet)'></i>
             <i class='fa ' ng-class='{"fa-check-circle": bullet.done, "fa-circle": !bullet.done}' ng-switch-when='event' ng-click='toggleDone(bullet)'></i>
             <i class='fa ' ng-class='{"fa-check-circle-o": bullet.done, "fa-circle-o": !bullet.done}' ng-switch-when='note' ng-click='toggleDone(bullet)'></i>
             <span ng-dblclick='editBullet(bullet)' ng-class='{done: bullet.done}' > {[{ bullet.name }]} </span>
-            <form class='edit-form' ng-submit='doneEditing(bullet)' ng-switch on='elementType'>
+            <form class='edit-form' ng-submit='doneEditing(bullet)'>
                 <input type="text"  class="new-element-input form-control" ng-model='bullet.name' focus-on='bullet == editedBullet' ui-keydown="{27: 'cancelEditing(bullet)'}" />
             </form>
             <i class='fa fa-times' ng-click='removeElement(bullet)'></i>
