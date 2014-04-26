@@ -28,14 +28,18 @@ appServices.factory('PagesService', function($http) {
 
 appServices.factory('BulletsService', function($http) {
     return {
+        createBullet: function(bulletObj) {
+            var bullet = $http.post('/api/bullets', bulletObj); 
+            return bullet;
+        },
         updateBullet: function(bulletId, data) {
             var bullet = $http.put('/api/bullets/' + bulletId, data);
             return bullet;
         },
-        createBullet: function(bulletObj) {
-            var bullet = $http.post('/api/bullets', bulletObj); 
+        removeBullet: function(bulletId) {
+            var bullet = $http.delete('/api/bullets/' + bulletId);
             return bullet;
-        }
+        },
     }
 });
 

@@ -198,6 +198,18 @@ aside#side-bar {
         }
         .bullet-wrapper {
             cursor: pointer;
+            &:hover i.fa-times {
+                display: inline-block;
+            }
+            i.fa-times {
+                &:hover {
+                    -webkit-transform: scale(1.3);
+                    -ms-transform: scale(1.3);
+                    transform: scale(1.3); 
+                }
+                display: none;
+                float: right;
+            }
         }
         .done {
             text-decoration: line-through;

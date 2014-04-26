@@ -104,6 +104,17 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
         });
     };
 
+    $scope.removeElement = function (bullet) {
+        console.log($scope.bullets);
+        console.log($scope.bullets.indexOf(bullet));
+    
+        BulletsService.removeBullet(bullet.id).then(function() {
+            $scope.bullets.splice($scope.bullets.indexOf(bullet), 1);
+        });
+
+    };
+
+
     // Listening on the addNewElement event, fired when,
     // user clicks on add elements on the sidebar
     $scope.$onRootScope('addNewElement', function() {

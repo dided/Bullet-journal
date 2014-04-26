@@ -6,6 +6,7 @@
             <i class='fa ' ng-class='{"fa-check-circle": bullet.done, "fa-circle": !bullet.done}' ng-switch-when='event'></i>
             <i class='fa ' ng-class='{"fa-check-circle-o": bullet.done, "fa-circle-o": !bullet.done}' ng-switch-when='note'></i>
             <span ng-class='{done: bullet.done}' ng-click='toggleDone(bullet)'> {[{ bullet.name }]} </span>
+            <i class='fa fa-times' ng-click='removeElement(bullet)'></i>
         </div>
     </div>
     <div class="new-page-wrapper" ng-show="addNewElement" >
