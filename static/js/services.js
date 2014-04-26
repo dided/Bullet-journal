@@ -31,6 +31,10 @@ appServices.factory('BulletsService', function($http) {
         updateBullet: function(bulletId, data) {
             var bullet = $http.put('/api/bullets/' + bulletId, data);
             return bullet;
+        },
+        createBullet: function(bulletObj) {
+            var bullet = $http.post('/api/bullets', bulletObj); 
+            return bullet;
         }
     }
 });

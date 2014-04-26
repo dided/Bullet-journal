@@ -78,15 +78,30 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
         BulletsService.updateBullet(bullet.id, bullet);
     };
 
-    $scope.keypressCallback = function($event) {
-        alert('Voila!');
-        $event.preventDefault();
-    };
-
     $scope.cancel = function ($event) {
         $event.preventDefault();
         ElementsService.prepAddEvent(false);
     
+    };
+
+    $scope.addElement = function () {
+        var bulletName = $scope.bulletName;
+  
+        if (!bulletName) {
+            return;
+        }
+
+        var bulletObj = {
+            name: bulletName.trim(),
+            type: $scope.elementType,
+            page: $scope.page.id 
+        }
+
+        BulletsService.createBullet(bulletObj).success(function(newBullet) {
+            $scope.bulletName = '';
+            $scope.bullets.push(newBullet);
+            $scope.addNewElement = false;
+        });
     };
 
     // Listening on the addNewElement event, fired when,
