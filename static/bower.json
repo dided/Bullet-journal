@@ -12,13 +12,12 @@
     "angular": "1.2.0",
     "angular-animate": "1.2.0",    
     "angular-cookies": "1.2.0",
-    "angular-loader": "1.2.0",
     "angular-resource": "1.2.0",
     "angular-route": "1.2.0",
     "angular-sanitize": "1.2.0",
-    "angular-touch": "1.2.0",
     "bootstrap-less": "*",
     "fontawesome": "*",
-    "angular-bootstrap": "*"
+    "angular-bootstrap": "*",
+    "angular-ui-utils": "*"
   }
 }

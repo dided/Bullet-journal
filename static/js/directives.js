@@ -1,8 +1,19 @@
 /* Directives */
 
-angular.module('jApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+appDirectives = angular.module('jApp.directives', []);
+
+//Directive to auto foucs inputs
+appDirectives.directive('focusOn', function($timeout, $parse){
+    return {
+        link: function($scope, element, attrs) {
+            var model = $parse(attrs.focusOn);
+            $scope.$watch(model, function(value) {
+                if (value === true) {
+                    $timeout(function() {
+                        element[0].focus();
+                    });
+                }
+            });
+        }
     };
-  }]);
+});

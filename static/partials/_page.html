@@ -8,6 +8,14 @@
             <span ng-class='{done: bullet.done}' ng-click='toggleDone(bullet)'> {[{ bullet.name }]} </span>
         </div>
     </div>
+    <div class="new-page-wrapper" ng-show="addNewElement" >
+        <div ng-switch on='elementType'>
+            <i class='fa fa-square' ng-switch-when='task'></i>
+            <i class='fa fa-circle' ng-switch-when='note'></i>
+            <i class='fa fa-circle-o' ng-switch-when='event'></i>
+            <input type="text" class="new-page-input" focus-on='addNewElement' ui-keydown="{27: 'cancel($event)'}" />
+        </div>
+    </div>
     <div class="page-control">
         <i class='fa fa-angle-double-left' title='First page' ng-click='firstPage()'></i>
         <i class='fa fa-angle-left' title='Previous Page' ng-click='prevPage()'></i>

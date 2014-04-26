@@ -17,7 +17,18 @@ app.controller('IndexController', function($scope, PagesService) {
     });
 });
 
-app.controller('PageController', function($rootScope, $scope, $routeParams, $location, PagesService, BulletsService) {
+app.controller('SidebarController', function($scope, ElementsService) {
+    $scope.isOpen = false;
+
+    //Prepare and emit addElement event, 
+    //for the page controller, to handle
+    //the element adding process
+    $scope.addElement = function (elementType) {
+        ElementsService.prepAddEvent(true, elementType);
+    };
+});
+
+app.controller('PageController', function($rootScope, $scope, $routeParams, $location, PagesService, BulletsService, ElementsService) {
     // Get total pages count for the navigation, 
     // pretty sure there is a better way 
     PagesService.getTotalPageCount().success(function(count) { 
@@ -67,20 +78,28 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
         BulletsService.updateBullet(bullet.id, bullet);
     };
 
+    $scope.keypressCallback = function($event) {
+        alert('Voila!');
+        $event.preventDefault();
+    };
+
+    $scope.cancel = function ($event) {
+        $event.preventDefault();
+        ElementsService.prepAddEvent(false);
+    
+    };
+
+    // Listening on the addNewElement event, fired when,
+    // user clicks on add elements on the sidebar
+    $scope.$onRootScope('addNewElement', function() {
+        $scope.addNewElement = ElementsService.flag;
+        $scope.elementType = ElementsService.elementType;
+    });
+
 });
 
 var AddElementsController = function ($scope, $modal, $routeParams, $location, PagesService, BulletsService) {
     var currentPage = $routeParams.page_number;
-
-    $scope.addElement = function (type) {
-
-    };
 }
-
-
-app.controller('SidebarController', function($scope) {
-    $scope.isOpen = false;
-
-});
 
 
