@@ -19,6 +19,7 @@ app.controller('IndexController', function($scope, PagesService) {
 
 app.controller('SidebarController', function($scope, ElementsService) {
     $scope.isOpen = false;
+    $scope.editStart = false;
 
     //Prepare and emit addElement event, 
     //for the page controller, to handle
@@ -29,6 +30,8 @@ app.controller('SidebarController', function($scope, ElementsService) {
 });
 
 app.controller('PageController', function($rootScope, $scope, $routeParams, $location, PagesService, BulletsService, ElementsService) {
+
+console.log("here");
     // Get total pages count for the navigation, 
     // pretty sure there is a better way 
     PagesService.getTotalPageCount().success(function(count) { 
@@ -114,10 +117,33 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
 
     };
 
+    $scope.editBullet = function (bullet) {
+        //$scope.editStart = true;
+        $scope.editedBullet = bullet;
+        $scope.original = angular.extend({}, bullet);
+    };
+
+    $scope.doneEditing = function (bullet) {
+        console.log(bullet);
+        if (bullet.name === $scope.original.name) {
+            $scope.editedBullet = null;
+            return;
+        }
+        BulletsService.updateBullet(bullet.id, bullet).success(function(bullet) {
+            $scope.editedBullet = null;
+        
+        });
+    };
+
+    $scope.cancelEditing = function (bullet) {
+        $scope.bullets[$scope.bullets.indexOf(bullet)] = $scope.original;
+        $scope.editedBullet = null;
+    };
 
     // Listening on the addNewElement event, fired when,
     // user clicks on add elements on the sidebar
     $scope.$onRootScope('addNewElement', function() {
+    console.log($scope.addNewElement);
         $scope.addNewElement = ElementsService.flag;
         $scope.elementType = ElementsService.elementType;
     });

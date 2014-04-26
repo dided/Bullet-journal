@@ -8,7 +8,7 @@ appDirectives.directive('focusOn', function($timeout, $parse){
         link: function($scope, element, attrs) {
             var model = $parse(attrs.focusOn);
             $scope.$watch(model, function(value) {
-                if (value === true) {
+                if (value) {
                     $timeout(function() {
                         element[0].focus();
                     });

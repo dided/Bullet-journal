@@ -1,11 +1,14 @@
 <div class="page" ng-controller='PageController'>
     <div class='title'>{[{ page.title }]}</div>
-    <div class="bullet-wrapper" ng-repeat=" bullet in bullets ">
+    <div class="bullet-wrapper" ng-repeat=" bullet in bullets "  ng-class='{editing: editedBullet == bullet}'>
         <div ng-switch on='bullet.type'>
-            <i class='fa ' ng-class='{"fa-check-square": bullet.done, "fa-square": !bullet.done}' ng-switch-when='task'></i>
-            <i class='fa ' ng-class='{"fa-check-circle": bullet.done, "fa-circle": !bullet.done}' ng-switch-when='event'></i>
-            <i class='fa ' ng-class='{"fa-check-circle-o": bullet.done, "fa-circle-o": !bullet.done}' ng-switch-when='note'></i>
-            <span ng-class='{done: bullet.done}' ng-click='toggleDone(bullet)'> {[{ bullet.name }]} </span>
+            <i class='fa ' ng-class='{"fa-check-square": bullet.done, "fa-square": !bullet.done}' ng-switch-when='task' ng-click='toggleDone(bullet)'></i>
+            <i class='fa ' ng-class='{"fa-check-circle": bullet.done, "fa-circle": !bullet.done}' ng-switch-when='event' ng-click='toggleDone(bullet)'></i>
+            <i class='fa ' ng-class='{"fa-check-circle-o": bullet.done, "fa-circle-o": !bullet.done}' ng-switch-when='note' ng-click='toggleDone(bullet)'></i>
+            <span ng-dblclick='editBullet(bullet)' ng-class='{done: bullet.done}' > {[{ bullet.name }]} </span>
+            <form class='edit-form' ng-submit='doneEditing(bullet)' ng-switch on='elementType'>
+                <input type="text"  class="new-element-input form-control" ng-model='bullet.name' focus-on='bullet == editedBullet' ui-keydown="{27: 'cancelEditing(bullet)'}" />
+            </form>
             <i class='fa fa-times' ng-click='removeElement(bullet)'></i>
         </div>
     </div>
@@ -14,8 +17,10 @@
             <i class='fa fa-square' ng-switch-when='task'></i>
             <i class='fa fa-circle' ng-switch-when='note'></i>
             <i class='fa fa-circle-o' ng-switch-when='event'></i>
-            <input type="text" class="new-element-input form-control" ng-model='bulletName' focus-on='addNewElement' ui-keydown="{27: 'cancel($event)', 13: 'add()'}" />
+            <input type="text"  class="new-element-input form-control" ng-model='bulletName' focus-on="addNewElement == true"  ui-keydown="{27: 'cancel($event)'}" />
         </form>
+    </div>
+    <div class="edit-element" ng-show="editStart" >
     </div>
     <div class="page-control">
         <i class='fa fa-angle-double-left' title='First page' ng-click='firstPage()'></i>
@@ -24,4 +29,4 @@
         <i class='fa fa-angle-right' title='Next Page' ng-click='nextPage()'></i>
         <i class='fa fa-angle-double-right' title='Last Page' ng-click='lastPage()'></i>
     </div>
-</div>
+</div>                                     
