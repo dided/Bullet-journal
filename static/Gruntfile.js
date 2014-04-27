@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+  'use strict';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -8,65 +9,64 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-			'bower_components/angular/angular.js',
-			'bower_components/angular-animate/angular-animate.js',
-			'bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
-			'bower_components/angular-resource/angular-resource.js',
-			'bower_components/angular-route/angular-route.js',		
-			'js/**/*.js'
-		],
+            'bower_components/angular/angular.js',
+            'bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
+            'bower_components/angular-resource/angular-resource.js',
+            'bower_components/angular-route/angular-route.js',		
+            'js/**/*.js'
+	],
         dest: 'dist/js/app.js'
       }
     },  
-	uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-      },
+    uglify: {
       dist: {
         files: {
           'dist/js/app.min.js': ['<%= concat.dist.dest %>']
         }
       }
     },	
-	less: {	 
-	  development: {
-		options: {
-		  paths: [""]
-		},
-		files:{
-		  "dist/css/app.css": "less/*.less",
-		}
-	  },
-	  production: {
-	    options: {
-		  paths: [""],
-		  cleancss: true,
-		},
-		files: [{
-		  "dist/css/app.css": ["less/app.less", "less/bootstrap.less"],
-                }]
-	  }
-	},	
-	jshint: {
+    less: {	 
+      development: {
+            options: {
+              paths: [""]
+            },
+            files:{
+              "dist/css/app.css": "less/*.less",
+            }
+      },
+      production: {
+        options: {
+              paths: [""],
+              cleancss: true,
+            },
+            files: [{
+              "dist/css/app.css": ["less/app.less", "less/bootstrap.less"],
+            }]
+      }
+    },	
+    jshint: {
       files: ['Gruntfile.js', 'js/**/*.js'],
       options: {
-        // options here to override JSHint defaults
+        curly: true,
+        eqeqeq: true,
+        unused: true,
+        globalstrict: true,
         globals: {
-	  angular: true,
-          jQuery: true,
-          console: true,
-          module: true,
-          document: true
+            angular: true,
+            jQuery: true,
+            console: true,
+            module: true,
+            document: true
         }
       }
     },
-	copy: {
-          images: {
-            expand: true,
-            src: ["img/*"],
-            dest: 'dist/'
+    copy: {
+      images: {
+        expand: true,
+        src: ["img/*"],
+        dest: 'dist/'
       },
-	  partials: {
+      partials: {
         expand: true,
         src: ["partials/*"],
         dest: 'dist/'
@@ -76,11 +76,11 @@ module.exports = function(grunt) {
       javascript: {
 		files: ['js/*.js'],
 		tasks: ['concat']
-	  },
-	  less: {
-		files: ['less/*.less'],
-		tasks: ['less:development']
-	  }
+        },
+      less: {
+            files: ['less/*.less'],
+            tasks: ['less:development']
+      }
     }
   });
   

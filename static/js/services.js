@@ -1,5 +1,7 @@
 /* Services */
-appServices = angular.module('jApp.services', []);
+'use strict';
+
+var appServices = angular.module('jApp.services', []);
 
 appServices.factory('PagesService', function($http) {
     return {
@@ -20,18 +22,18 @@ appServices.factory('PagesService', function($http) {
             return pages;
         },
         getTotalPageCount: function() {
-            var count = $http.get('/api/count')
+            var count = $http.get('/api/count');
             return count;
         },
-        createPage: function(page) {
-            var page = $http.post('/api/pages', page);
+        createPage: function(pageObj) {
+            var page = $http.post('/api/pages', pageObj);
             return page;
         },
-        updatePage: function(page) {
-            var page = $http.put('/api/pages/' + page.id, page);
+        updatePage: function(pageObj) {
+            var page = $http.put('/api/pages/' + pageObj.id, pageObj);
             return page;
         }
-    } 
+    }; 
 });
 
 appServices.factory('BulletsService', function($http) {
@@ -40,21 +42,21 @@ appServices.factory('BulletsService', function($http) {
             var bullet = $http.post('/api/bullets', bulletObj); 
             return bullet;
         },
-        updateBullet: function(bullet) {
-            var bullet = $http.put('/api/bullets/' + bullet.id, bullet);
+        updateBullet: function(bulletObj) {
+            var bullet = $http.put('/api/bullets/' + bulletObj.id, bulletObj);
             return bullet;
         },
         removeBullet: function(bulletId) {
             var bullet = $http.delete('/api/bullets/' + bulletId);
             return bullet;
         },
-    }
+    };
 });
 
 // Service for broadcasting the add element event from the sidebar
 appServices.factory('ElementsService', function($rootScope){
-    var flag = false;
-    var elementType = '';
+    this.flag = false;
+    this.elementType = '';
     return {
         prepAddEvent: function (flag, elementType) {
             this.elementType = elementType;
@@ -64,7 +66,7 @@ appServices.factory('ElementsService', function($rootScope){
         emitAddEvent: function () {
             $rootScope.$emit('addNewElement');
         }
-    }
+    };
 });
 
 

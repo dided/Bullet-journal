@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('jApp.filters', []).
   filter('interpolate', ['version', function(version) {
     return function(text) {

@@ -1,15 +1,11 @@
 /* Controllers */
 
-app = angular.module('jApp.controllers', []);
+'use strict';
 
-app.controller('HeaderController', function($scope, $modal) {
-    $scope.openAddModal = function() {
-        $modal.open({
-            templateUrl: '/static/partials/_add_elements.html',
-            controller: AddElementsController        
-        });
-    }
-});
+var app = angular.module('jApp.controllers', []);
+
+//app.controller('HeaderController', function($scope, $modal) {
+//});
 
 app.controller('IndexController', function($scope, PagesService) {
     PagesService.getPages().success(function(data) {
@@ -20,15 +16,17 @@ app.controller('IndexController', function($scope, PagesService) {
 app.controller('SidebarController', function($scope, ElementsService, PagesService, $location) {
     $scope.isOpen = false;
 
-    //Prepare and emit addElement event, 
-    //for the page controller, to handle
-    //the element adding process
+    /**
+      * Prepare and emit addElement event, 
+      * for the page controller, to handle
+      * the element adding process
+      */
     $scope.addElement = function (elementType) {
         ElementsService.prepAddEvent(true, elementType);
     };
 
     $scope.addPage = function () {
-        placeholderPage = {title: 'New page'};
+        var placeholderPage = {title: 'New page'};
         PagesService.createPage(placeholderPage).success(function(page){
             $location.path('page=' + page.page_number);
         });
@@ -80,8 +78,8 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
     // send a put request to the server,
     // to update the bullet done status
     $scope.toggleDone = function(bullet) {
-        if (bullet.done) bullet.done = false;
-        else bullet.done = true;
+        if (bullet.done) {bullet.done = false;}
+        else {bullet.done = true;}
 
         BulletsService.updateBullet(bullet);
     };
@@ -103,7 +101,7 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
             name: bulletName.trim(),
             type: $scope.elementType,
             page: $scope.page.id 
-        }
+        };
 
         BulletsService.createBullet(bulletObj).success(function(newBullet) {
             $scope.bulletName = '';
@@ -129,12 +127,11 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
     };
 
     $scope.doneEditing = function (bullet) {
-        console.log(bullet);
         if (bullet.name === $scope.original.name) {
             $scope.editedBullet = null;
             return;
         }
-        BulletsService.updateBullet(bullet.id, bullet).success(function(bullet) {
+        BulletsService.updateBullet(bullet.id, bullet).success(function() {
             $scope.editedBullet = null;
         });
     };
@@ -147,7 +144,7 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
     $scope.editPage = function (page) {
         $scope.editedPage = page;
         $scope.originalPage = angular.extend({}, page);
-    }
+    };
 
     $scope.donePageEditing= function (page) {
         if (page.title === $scope.originalPage.name) {
@@ -161,7 +158,7 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
         });
     };
 
-    $scope.cancelPageEditing= function (Page) {
+    $scope.cancelPageEditing= function () {
         $scope.page = $scope.originalPage;
         $scope.editedPage = null;
     };
@@ -175,9 +172,3 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
         $scope.elementType = ElementsService.elementType;
     });
 });
-
-var AddElementsController = function ($scope, $modal, $routeParams, $location, PagesService, BulletsService) {
-    var currentPage = $routeParams.page_number;
-}
-
-

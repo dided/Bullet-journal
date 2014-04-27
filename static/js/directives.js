@@ -1,6 +1,7 @@
 /* Directives */
+'use strict';
 
-appDirectives = angular.module('jApp.directives', []);
+var appDirectives = angular.module('jApp.directives', []);
 
 //Directive to auto foucs inputs
 appDirectives.directive('focusOn', function($timeout, $parse){

@@ -1,5 +1,6 @@
-// Declare app level module which depends on filters, and services
-app = angular.module('jApp', [
+'use strict';
+
+var app = angular.module('jApp', [
   'ngResource',
   'ngRoute',
   'jApp.filters',
@@ -34,7 +35,7 @@ app.config(['$provide', function($provide){
     }]);
 }]);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/static/partials/_index_page.html',
