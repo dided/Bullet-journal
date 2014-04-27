@@ -95,6 +95,6 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('build', ['concat', 'uglify', 'less:production', 'copy']);
     grunt.registerTask('watcher', ['watch']);
-    grunt.registerTask('heroku:development', ['concat', 'uglify', 'less:development']);
+    grunt.registerTask('heroku:development', ['concat', 'less:development']);
 
 };
