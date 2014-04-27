@@ -84,15 +84,17 @@ module.exports = function(grunt) {
     }
   });
   
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');  
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');  
-  
-  grunt.registerTask('default', ['concat', 'less:development']);
-  grunt.registerTask('test', ['jshint']);
-  grunt.registerTask('build', ['concat', 'uglify', 'less:production', 'copy']);
-  grunt.registerTask('watcher', ['watch']);
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');  
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-watch');  
+
+    grunt.registerTask('default', ['concat', 'less:development']);
+    grunt.registerTask('test', ['jshint']);
+    grunt.registerTask('build', ['concat', 'uglify', 'less:production', 'copy']);
+    grunt.registerTask('watcher', ['watch']);
+    grunt.registerTask('heroku:development', ['concat', 'uglify', 'less:production', 'copy']);
+
 };
