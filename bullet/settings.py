@@ -72,11 +72,11 @@ WSGI_APPLICATION = 'bullet.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-#DATABASES = {
-    #'default': {
-        #'ENGINE': 'django.db.backends.mysql',
-    #}
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+    }
+}
 
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
