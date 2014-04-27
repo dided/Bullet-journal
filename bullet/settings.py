@@ -85,7 +85,6 @@ WSGI_APPLICATION = 'bullet.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-# Parse database configuration from $DATABASE_URL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -100,7 +99,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/

@@ -2,7 +2,8 @@
   "name": "bullet",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "postinstall": "echo postinstall time; ./node_modules/grunt/bin/grunt build"
   },
   "devDependencies": {
         "grunt": "~0.4.1",   
