@@ -85,15 +85,22 @@ WSGI_APPLICATION = 'bullet.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+# Parse database configuration from $DATABASE_URL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bullet_journal',
-        'USER': 'root',
-        'PASSWORD': 'root',
     }
 }
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -113,4 +120,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+
+try:
+    from local_settings import *
+except Exception as e: 
+    pass
 
