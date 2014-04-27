@@ -3,7 +3,6 @@
   "main": "Gruntfile.js",
   "scripts": {
     "test": "grunt test",
-    "postinstall": "grunt build"
   },
   "devDependencies": {
         "grunt": "~0.4.1",   
