@@ -15,6 +15,9 @@ TEMPLATE_DIRS = (
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
+DEBUG = True
+TEMPLATE_DEBUG = True
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
