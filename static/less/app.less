@@ -6,17 +6,6 @@
     position: absolute;
     top: @top; left: @left; right: @right; bottom: @bottom;
 }
-
-.element-mixin(@background-color) {
-    background-color: @background-color;
-    border: 3px solid @background-color;
-    &:hover {
-        background-color: #fff;
-        border: 3px solid @background-color;
-        color: #000;
-    }
-}
-
 /******************************** Layout *******************************/
 html, body {
     height: 100%;
@@ -47,9 +36,7 @@ aside#side-bar {
     height: 100%;
     padding-top: 50px;
 }
-
 /******************************** Header ******************************/
-
 #header {
     ul.header-nav {
         list-style: none;
@@ -101,8 +88,7 @@ aside#side-bar {
     }
 }
 
-/******************************** Side bar******************************/
-
+/******************************** Side bar ******************************/
 .closed {
     width: 40px;
 }
@@ -178,7 +164,6 @@ aside#side-bar {
 }
 
 /******************************** Content ******************************/
-
 #content {
     background: linear-gradient( to top, rgba(243,241,229,1) 0%, rgba(243,241,229,0) 100%); 
     margin: 0 auto;
@@ -263,78 +248,12 @@ aside#side-bar {
                 }
             }
         }
-
     }
     .title {
         text-decoration: underline;
     }
     .add-new-page {
         cursor: pointer;
-    }
-
-}
-
-/******************************** Add Element Modal ******************************/
-
-#add-modal {
-    font-family: 'Roboto';
-    .modal-header {
-        text-align: center;
-    }
-    .modal-body {
-        padding: 0px;
-        height: 200px;
-        span.type {
-            display: inline-block;
-            margin: 20px 14px; 
-            font-size: 14px;
-            font-weight: bold;
-        }
-        ul {
-            width: 530px;
-            height: 60px;
-            padding: 5px;
-            float: right;
-            text-align: center;
-            list-style: none;
-            li {
-                width: 120px;
-                height: 50px;
-                padding: 13px;
-                display: inline-block;
-                color: #ffffff;
-                cursor: pointer;
-                border-radius: 4px;
-                transition: all 0.3s;
-                &:hover {
-                    -webkit-transform: scale (1.2);
-                    transform: scale (1.2); 
-                }
-            }
-            li.task-element {
-                .element-mixin(#34495e);
-            }
-            li.note-element {
-                .element-mixin(#0d7eff);
-            }
-            li.event-element {
-                .element-mixin(#779ce8);
-            }
-            li.empty-element{
-                .element-mixin(#e74c3c);
-            }
-            li.active {
-                
-            }
-        }
-        label {
-           margin: 7px 15px; 
-        }
-        input.element-name-input {
-            width: 490px;
-            float: right;
-            margin-right: 20px;
-        }
     }
 }
 

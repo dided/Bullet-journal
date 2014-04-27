@@ -28,7 +28,6 @@ appServices.factory('PagesService', function($http) {
             return page;
         },
         updatePage: function(page) {
-            console.log(page);
             var page = $http.put('/api/pages/' + page.id, page);
             return page;
         }
