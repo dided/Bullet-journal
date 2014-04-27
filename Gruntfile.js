@@ -9,11 +9,11 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-            '/static/js/bower_components/angular/angular.js',
-            '/static/js/bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
-            '/static/js/bower_components/angular-resource/angular-resource.js',
-            '/static/js/bower_components/angular-route/angular-route.js',		
-            '/static/js/**/*.js'
+            'static/js/bower_components/angular/angular.js',
+            'static/js/bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
+            'static/js/bower_components/angular-resource/angular-resource.js',
+            'static/js/bower_components/angular-route/angular-route.js',		
+            'static/js/**/*.js'
 	],
         dest: 'static/dist/js/app.js'
       }
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
               paths: [""]
             },
             files:{
-              "/static/dist/css/app.css": "/static/less/*.less",
+              "static/dist/css/app.css": "static/less/*.less",
             }
       },
       production: {
