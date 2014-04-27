@@ -9,10 +9,10 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-            'static/js/bower_components/angular/angular.js',
-            'static/js/bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
-            'static/js/bower_components/angular-resource/angular-resource.js',
-            'static/js/bower_components/angular-route/angular-route.js',		
+            'static/bower_components/angular/angular.js',
+            'static/bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
+            'static/bower_components/angular-resource/angular-resource.js',
+            'static/bower_components/angular-route/angular-route.js',		
             'static/js/**/*.js'
 	],
         dest: 'static/dist/js/app.js'
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'static/dist/js/app.min.js': ['<%= concat.dist.dest %>']
+          'dist/js/app.min.js': ['<%= concat.dist.dest %>']
         }
       }
     },	
@@ -84,17 +84,16 @@ module.exports = function(grunt) {
     }
   });
   
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');  
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    //grunt.loadNpmTasks('grunt-contrib-watch');  
-
-    grunt.registerTask('default', ['concat', 'less:development']);
-    grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('build', ['concat', 'uglify', 'less:production', 'copy']);
-    grunt.registerTask('watcher', ['watch']);
-    grunt.registerTask('heroku:development', ['concat', 'less:development']);
-
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');  
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  //grunt.loadNpmTasks('grunt-contrib-watch');  
+  
+  grunt.registerTask('default', ['concat', 'less:development']);
+  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('build', ['concat', 'uglify', 'less:production', 'copy']);
+  //grunt.registerTask('watcher', ['watch']);
+grunt.registerTask('heroku:development', ['concat', 'less:development']);
 };
