@@ -74,11 +74,11 @@ module.exports = function(grunt) {
     },
     watch: {
       javascript: {
-		files: ['js/*.js'],
+		files: ['static/js/*.js'],
 		tasks: ['concat']
         },
       less: {
-            files: ['less/*.less'],
+            files: ['static/less/*.less'],
             tasks: ['less:development']
       }
     }

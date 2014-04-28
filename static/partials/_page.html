@@ -6,7 +6,7 @@
         </form>
     </div>
     <div class="bullet-wrapper" ng-repeat=" bullet in bullets" ng-class='{editing: editedBullet == bullet}'>
-        <div ng-switch on='bullet.type'>
+        <div class='bullet' ng-switch on='bullet.type'>
             <i class='fa ' ng-class='{"fa-check-square": bullet.done, "fa-square": !bullet.done}' ng-switch-when='task' ng-click='toggleDone(bullet)'></i>
             <i class='fa ' ng-class='{"fa-check-circle": bullet.done, "fa-circle": !bullet.done}' ng-switch-when='event' ng-click='toggleDone(bullet)'></i>
             <i class='fa ' ng-class='{"fa-check-circle-o": bullet.done, "fa-circle-o": !bullet.done}' ng-switch-when='note' ng-click='toggleDone(bullet)'></i>
