@@ -60,3 +60,10 @@ local_settings.py
 # Sphinx documentation
 docs/_build/
 
+#Frontend stuff:
+dist
+vendor
+node_modules
+
+
+.idea
