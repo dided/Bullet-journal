@@ -3,12 +3,12 @@
 <html ng-app='jApp'>
     <head>
         <title>Journal</title>
-        <link rel="stylesheet" href="{% static 'bower_components/fontawesome/css/font-awesome.min.css' %}" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}" type="text/css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{% static 'dist/css/app.css' %}" type="text/css" media="screen" title="no title" charset="utf-8">
     </head>
 
     <body>
-        <header id='header' ng-controller='HeaderController' >
+        <header id='header'>
             <div class='account' class='dropdown'>
                 <a class='dropdown-toggle'>
                     <i class='fa fa-user'></i> 
@@ -54,6 +54,6 @@
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{% static  'dist/js/app.js' %}"></script>
-    <script type="text/javascript" src="{% static  'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js' %}"></script>
-    <script type="text/javascript" src="{% static  'bower_components/angular-ui-utils/ui-utils.min.js' %}"></script>
+    <script type="text/javascript" src="{% static  'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js' %}"></script>
+    <script type="text/javascript" src="{% static  'vendor/angular-ui-utils/ui-utils.min.js' %}"></script>
 </html>

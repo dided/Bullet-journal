@@ -4,9 +4,6 @@
 
 var app = angular.module('jApp.controllers', []);
 
-//app.controller('HeaderController', function($scope, $modal) {
-//});
-
 app.controller('IndexController', function($scope, PagesService) {
     PagesService.getPages().success(function(data) {
         $scope.pages = data;

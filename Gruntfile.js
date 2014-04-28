@@ -9,19 +9,19 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-            'bower_components/angular/angular.js',
-            'bower_components/angular-bootstrap3/ui-bootstrap-tpls.js',
-            'bower_components/angular-resource/angular-resource.js',
-            'bower_components/angular-route/angular-route.js',		
-            'js/**/*.js'
+            'static/vendor/angular/angular.js',
+            'static/vendor/angular-bootstrap3/ui-bootstrap-tpls.js',
+            'static/vendor/angular-resource/angular-resource.js',
+            'static/vendor/angular-route/angular-route.js',		
+            'static/js/**/*.js'
 	],
-        dest: 'dist/js/app.js'
+        dest: 'static/dist/js/app.js'
       }
     },  
     uglify: {
       dist: {
         files: {
-          'dist/js/app.min.js': ['<%= concat.dist.dest %>']
+          'static/dist/js/app.min.js': ['<%= concat.dist.dest %>']
         }
       }
     },	
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
               paths: [""]
             },
             files:{
-              "dist/css/app.css": "less/*.less",
+              "static/dist/css/app.css": "static/less/*.less",
             }
       },
       production: {
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
               cleancss: true,
             },
             files: [{
-              "dist/css/app.css": ["less/app.less", "less/bootstrap.less"],
+              "static/dist/css/app.css": "static/less/*.less",
             }]
       }
     },	
@@ -95,4 +95,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['jshint']);
   grunt.registerTask('build', ['concat', 'uglify', 'less:production', 'copy']);
   grunt.registerTask('watcher', ['watch']);
+  grunt.registerTask('heroku:development', ['concat', 'less:production']);
 };
