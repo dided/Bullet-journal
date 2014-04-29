@@ -46,6 +46,14 @@
                     <span ng-show='isOpen'>Add Empty Page</span>
                 </li>
             </ul>
+            <div ng-show='isOpen' class='options-container'>
+                <ul>
+                    <li><i class='fa fa-cog'></i> Settings </li>
+                    <li><i class='fa fa-sign-out'></i> <a href='{% url "logout" %}'> Logout </a></li>
+                </ul>
+                
+                
+            </div>
         </aside>
         <section id='content'>
             <div class='page-container' ng-view></div>
