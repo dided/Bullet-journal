@@ -15,9 +15,6 @@ TEMPLATE_DEBUG = DEBUG
 
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
-DEBUG = True
-TEMPLATE_DEBUG = True
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
@@ -25,7 +22,7 @@ STATICFILES_DIRS = (
 )
 
 # Redirect urls
-LOGIN_URL = '/user/login'
+LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/app/'
 

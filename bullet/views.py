@@ -3,12 +3,23 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from registration.backends.default.views import RegistrationView
+
+from registration.backends.simple.views import RegistrationView 
 from registration.forms import RegistrationFormUniqueEmail
+from registration.signals import user_registered
+
+from api.models import Page
 
 
 class RegistrationViewUniqueEmail(RegistrationView):
     form_class = RegistrationFormUniqueEmail
+    def get_success_url(self, request, user):
+        return '/app/'
+    
+
+def create_index_page(sender, user, request, **kwargs):
+    page = Page.objects.create(title='Index', page_number=1, user=user)
+
 
 def index(request):
     context = RequestContext(request)
@@ -27,4 +38,5 @@ def user_logout(request):
     return HttpResponseRedirect('index')
 
 
-    
+# When user is registered, create index page for him
+user_registered.connect(create_index_page)
