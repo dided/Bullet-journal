@@ -148,9 +148,7 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
             $scope.editedPage= null;
             return;
         }
-        console.log("Pre save page: ", page);
         PagesService.updatePage(page).success(function(page) {
-            console.log("Post save page: ", page);
             $scope.editedPage = null;
         });
     };
@@ -164,7 +162,6 @@ app.controller('PageController', function($rootScope, $scope, $routeParams, $loc
     // Listening on the addNewElement event, fired when,
     // user clicks on add elements on the sidebar
     $scope.$onRootScope('addNewElement', function() {
-    console.log($scope.addNewElement);
         $scope.addNewElement = ElementsService.flag;
         $scope.elementType = ElementsService.elementType;
     });

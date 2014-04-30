@@ -1,0 +1,23 @@
+[
+    {
+        "model": "api.signifier",
+        "pk": 1,
+        "fields": {
+            "name": "Important"
+        }
+    },
+    {
+        "model": "api.signifier",
+        "pk": 2,
+        "fields": {
+            "name": "Inspiration"
+        }
+    },
+    {
+        "model": "api.signifier",
+        "pk": 3,
+        "fields": {
+            "name": "Explore"
+        }
+    }
+]

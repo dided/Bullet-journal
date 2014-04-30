@@ -21,6 +21,12 @@ STATICFILES_DIRS = (
     STATIC_PATH,       
 )
 
+FIXTURE_PATH = os.path.join(BASE_DIR, 'fixtures')
+
+FIXTURE_DIRS = (
+    FIXTURE_PATH,       
+)
+
 # Redirect urls
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
