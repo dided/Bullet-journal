@@ -6,14 +6,7 @@ Inspiration and idea: [http://www.bulletjournal.com/][1]
 
   [1]: http://www.bulletjournal.com/
 
-  ----------
-**Stack**
- - *Backend:* Django, Django rest framework
- - *Frontend:* AngularJS(MVC, SPA)
- - *Design:* Bootstrap, LESS
- 
-
-  -------
+  http://bullet-journal.herokuapp.com/
  
  
 **Todos**
